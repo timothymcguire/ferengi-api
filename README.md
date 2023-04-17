@@ -25,6 +25,7 @@ Returns one rule of acquisition in an array by the rule's number.
         "text": "Once you have their money, you never give it back." 
     }
 ]
+```
 
 ## Acknowledgements
  - The rules were sourced from the [Memory Alpha](https://memory-alpha.fandom.com/wiki/Rules_of_Acquisition) wiki.
