@@ -4,7 +4,8 @@ use rules::{OFFICIAL_RULES, EXPANDED_RULES};
 
 use actix_web::{get, web, App, HttpServer, Responder};
 use rand::seq::IteratorRandom;
-use serde::{Serialize, Deserialize};
+use serde::{Serialize, Deserialize, ser::Serializer};
+use serde_json::json;
 use phf::Map;
 
 
@@ -27,7 +28,12 @@ impl Rule {
 #[serde(untagged)]
 pub enum RulesResponse {
     Rules(Vec<Rule>),
-    Empty,
+    #[serde(serialize_with="serialize_empty")]
+    Empty
+}
+
+fn serialize_empty<S>(s: S) -> Result<S::Ok, S::Error> where S: Serializer {
+    json!([]).serialize(s)
 }
 
 fn rule_by_number(rule_num: u32, table: &Map<u32, &'static str>) -> impl Responder {
