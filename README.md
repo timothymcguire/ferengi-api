@@ -42,5 +42,7 @@ Returns the n-th rule of acquisition in an array by the rule's number.
 ]
 ```
 
+The same can be used for the extended API where 'rule' is replaced with 'extended'.
+
 ## Acknowledgements
  - The rules were sourced from the [Memory Alpha](https://memory-alpha.fandom.com/wiki/Rules_of_Acquisition) wiki.
