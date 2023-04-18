@@ -17,11 +17,9 @@ of our product.
 But don't just take our word for it - hear what some of our satisfied customers have to say:
 
 "Before I started using the Ferengi Rules of Acquisition API, I was just a simple, naive businessman. But now, thanks 
-to the wisdom contained within these rules, I'm a true Ferengi at heart!" 
-- Quark, *Owner of Quark's Bar at Deep Space 9*
+to the wisdom contained within these rules, I'm a true Ferengi at heart!" - Quark, *Owner of Quark's Bar at Deep Space 9*
 
-"Since I started using this API, my profits have increased by 200%. I can't recommend it enough!" 
-- Brunt, *FCA Liquidator*
+"Since I started using this API, my profits have increased by 200%. I can't recommend it enough!" - Brunt, *FCA Liquidator*
 
 So what are you waiting for? Join the ranks of the galaxy's most cunning and successful businesspeople by using 
 the Ferengi Rules of Acquisition API today!
