@@ -16,8 +16,23 @@ Returns one random rule of acquisition in an array.
 ]
 ```
 
-### `GET /rule/{rule_num}`
-Returns one rule of acquisition in an array by the rule's number.
+### `GET /rule/<count>`
+Returns <count> random rules of acquisition in an array.
+```json
+[
+    { 
+        "num": 74,
+        "text": "Knowledge equals profit."
+    },
+    {
+        "num": 239,
+        "text": "Never be afraid to mislabel a product."
+    }
+]
+```
+
+### `GET /rule/number/<rule_num>`
+Returns the n-th rule of acquisition in an array by the rule's number.
 ```json
 [
     { 

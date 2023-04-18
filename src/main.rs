@@ -4,7 +4,7 @@ use rand::seq::IteratorRandom;
 use serde::{Serialize, Deserialize};
 
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Rule {
     num: u32,
     text: String
@@ -78,7 +78,7 @@ static OFFICIAL_RULES: phf::Map<u32, &'static str> = phf_map! {
     // One more unnumbered rule of acquisition
 };
 
-#[get("/rule/{rule_num}")]
+#[get("/rule/number/{rule_num}")]
 async fn rule_by_number(rule_num: web::Path<u32>) -> impl Responder {
     let rule_num = rule_num.into_inner();
 
@@ -91,6 +91,17 @@ async fn rule_by_number(rule_num: web::Path<u32>) -> impl Responder {
     } else {
         web::Json(RulesResponse::Empty)
     }
+}
+
+#[get("/rule/{count}")]
+async fn random_rules(count: web::Path<u32>) -> impl Responder {
+    let mut rng = rand::thread_rng();
+    let rules: Vec<Rule> = OFFICIAL_RULES
+        .entries()
+        .map(|x| Rule::new(*x.0, x.1.to_string()))
+        .choose_multiple(&mut rng, count.into_inner() as usize);
+    web::Json(RulesResponse::Rules(rules))
+
 }
 
 #[get("/rule")]
@@ -115,6 +126,7 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .service(rule_by_number)
             .service(random_rule)
+            .service(random_rules)
     })
         .bind(("127.0.0.1", 8080))?
         .run()
