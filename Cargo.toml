@@ -1,7 +1,10 @@
 [package]
 name = "ferengi-api"
+description = "A simple API for retrieving Star Trek's Ferengi Rules of Acquisition."
 version = "0.1.0"
 edition = "2021"
+authors = ["Timothy McGuire"]
+repository = "https://github.com/timothymcguire/ferengi-api"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -11,3 +14,4 @@ phf = { version = "0.11", features = ["macros"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 rand = "0.8.5"
+clap = { version = "4.2.3", features = ["derive"] }
