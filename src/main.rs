@@ -7,6 +7,18 @@ use rand::seq::IteratorRandom;
 use serde::{Serialize, Deserialize, ser::Serializer};
 use serde_json::json;
 use phf::Map;
+use clap::Parser;
+
+
+#[derive(Parser, Debug)]
+#[command(author, version, about, long_about = None)]
+struct Args {
+    #[arg(short = 'i', long, default_value_t = String::from("localhost"))]
+    hostname: String,
+
+    #[arg(short, long, default_value_t = 80)]
+    port: u16
+}
 
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -104,6 +116,8 @@ async fn expanded_random_rule() -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    let args = Args::parse();
+
     HttpServer::new(|| {
         App::new()
             .service(official_rule_by_number)
@@ -113,7 +127,7 @@ async fn main() -> std::io::Result<()> {
             .service(official_random_rules)
             .service(expanded_random_rules)
     })
-        .bind(("127.0.0.1", 8080))?
+        .bind((args.hostname, args.port))?
         .run()
         .await
 }
