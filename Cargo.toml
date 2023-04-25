@@ -6,8 +6,6 @@ edition = "2021"
 authors = ["Timothy McGuire"]
 repository = "https://github.com/timothymcguire/ferengi-api"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
 actix-web = "4"
 phf = { version = "0.11", features = ["macros"] }
