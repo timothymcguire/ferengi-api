@@ -13,7 +13,7 @@ use clap::Parser;
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 struct Args {
-    #[arg(short = 'i', long, default_value_t = String::from("localhost"))]
+    #[arg(short = 'i', long, default_value_t = String::from("0.0.0.0"))]
     hostname: String,
 
     #[arg(short, long, default_value_t = 80)]
