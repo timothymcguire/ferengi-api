@@ -3,6 +3,8 @@ mod rules;
 use rules::{OFFICIAL_RULES, EXPANDED_RULES};
 
 use actix_web::{get, web, App, HttpServer, Responder};
+use actix_web::middleware::Logger;
+use actix_cors::Cors;
 use rand::seq::IteratorRandom;
 use serde::{Serialize, Deserialize, ser::Serializer};
 use serde_json::json;
@@ -118,8 +120,12 @@ async fn expanded_random_rule() -> impl Responder {
 async fn main() -> std::io::Result<()> {
     let args = Args::parse();
 
+    println!("Starting server on port {}...", args.port);
+
     HttpServer::new(|| {
         App::new()
+            .wrap(Logger::default())
+            .wrap(Cors::permissive())
             .service(official_rule_by_number)
             .service(expanded_rule_by_number)
             .service(official_random_rule)
